@@ -1,9 +1,5 @@
 FROM node:10
 
-RUN apt-get install -y net-tools
-# Add DOCKER host IP
-RUN export DOCKER_HOST_IP=$(route -n | awk '/UG[ \t]/{print $2}')
-
 WORKDIR /parse
 
 COPY package.json /parse
@@ -21,9 +17,7 @@ ENV REST_API_KEY=mBWbk7k3SrEWyEVJ
 ENV CLIENT_KEY=LwAg2ckKZpFNuvYY
 ENV SERVER_URL=http://localhost:3000/parse
 ENV PORT=3000
-ENV http_proxy=http://x219827:vacano04@internetproxy.prudential.com:8080/
-ENV https_proxy=http://x219827:vacano04@internetproxy.prudential.com:8080/
-ENV DATABASE_URI=mongodb://${DOCKER_HOST_IP}:27017/gbts
+ENV DATABASE_URI=mongodb://host.docker.internal:27017/gbts
 # Optional (default : 'parse/cloud/main.js')
 # ENV CLOUD_CODE_MAIN cloudCodePath
 
