@@ -1,10 +1,14 @@
 FROM node:10
 
-RUN mkdir parse
-
-ADD . /parse
 WORKDIR /parse
-RUN npm install
+
+COPY package.json /parse
+
+RUN echo "registry=http://registry.npmjs.org/\nstrict-ssl=false\nhttps-proxy=http://x219827:vacano04@internetproxy.prudential.com:8080\nproxy=http://x219827:vacano04@internetproxy.prudential.com:8080\n" > .npmrc
+
+RUN npm install --only=production
+
+COPY . /parse
 
 ENV APP_ID=gbts-5sp5m6ncszz
 ENV MASTER_KEY=tWT9d9FaBvqawa3d
