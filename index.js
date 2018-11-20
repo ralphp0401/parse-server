@@ -56,7 +56,7 @@ app.use(mountPath, api);
 
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
-  res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
+  res.redirect('/dashboard');
 });
 
 // make the Parse Dashboard available at /dashboard
