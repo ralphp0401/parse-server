@@ -5,7 +5,10 @@
 var express = require('express');
 var app = express();
 var ParseServer = require('parse-server').ParseServer;
+var ParseDashboard = require('parse-dashboard');
 var path = require('path');
+
+var options = { allowInsecureHTTP: false };
 
 if (app.get('env') == 'development') {
   require('dotenv').config();
@@ -33,6 +36,17 @@ var api = new ParseServer({
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
 
+var dashboard = new ParseDashboard({
+	"apps": [
+    {
+      "serverURL": process.env.SERVER_URL || 'http://localhost:1337/parse',
+      "appId": process.env.APP_ID || 'myAppId',
+      "masterKey": process.env.MASTER_KEY || 'myMasterKey',
+      "appName": "GBTS"
+    }
+  ]
+}, options);
+
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
@@ -44,6 +58,9 @@ app.use(mountPath, api);
 app.get('/', function(req, res) {
   res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
 });
+
+// make the Parse Dashboard available at /dashboard
+app.use('/dashboard', dashboard);
 
 // There will be a test page available on the /test path of your server url
 // Remove this before launching your app
