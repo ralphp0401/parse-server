@@ -42,13 +42,13 @@ var dashboard = new ParseDashboard({
       "serverURL": process.env.SERVER_URL || 'http://localhost:1337/parse',
       "appId": process.env.APP_ID || 'myAppId',
       "masterKey": process.env.MASTER_KEY || 'myMasterKey',
-      "appName": "GBTS"
+      "appName": "Evolussion"
     }
   ],
   "users": [
     {
-      "user": "admin",
-      "pass": "password"
+      "user": process.env.ADMIN_USER || 'admin',
+      "pass": process.env.ADMIN_PASSWORD || "password"
     }
   ],
   "useEncryptedPasswords": false
