@@ -1,5 +1,6 @@
 # dotenv
 .env
+parse-variables.env
 # Logs
 logs
 *.log
