@@ -4,7 +4,7 @@ WORKDIR /parse
 
 COPY package.json /parse
 
-RUN apk add --no-cache build-base make gcc g++ python
+RUN apk add --no-cache build-base make gcc g++ python krb5-dev
 
 RUN npm install
 

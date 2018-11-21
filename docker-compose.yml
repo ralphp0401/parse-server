@@ -1,19 +1,18 @@
 version: "2"
 services:
-  app:
-    container_name: "parse-server"
+  web:
     restart: always
+    env_file:
+      - parse-variables.env
     build: .
     ports:
       - "3000:3000"
     links:
       - mongo
-    env_file:
-        - parse-variables.env
   mongo:
-    container_name: mongo
     image: mongo
     volumes:
       - ./data:/data/db
     ports:
       - "27017:27017"
+

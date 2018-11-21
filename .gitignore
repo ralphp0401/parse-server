@@ -32,3 +32,7 @@ node_modules
 # Emacs
 *~
 .DS_Store
+
+# MongoDB
+data/
+data/*
