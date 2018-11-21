@@ -78,6 +78,7 @@ app.use('/dashboard', dashboard);
 var port = process.env.PORT || 1337;
 var httpServer = require('http').createServer(app);
 httpServer.listen(port, function() {
+    console.log('Parse server URL: ' + process.env.SERVER_URL);
     console.log('parse-server-example running on port ' + port + '.');
     
 });
